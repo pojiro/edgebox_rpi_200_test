@@ -35,6 +35,7 @@ defmodule EdgeboxRpi200Test.MixProject do
       {:ring_logger, "~> 0.9.0"},
       {:toolshed, "~> 0.3.0"},
       {:circuits_gpio, "~> 1.0"},
+      {:circuits_uart, "~> 1.3"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.13.0", targets: @all_targets},
