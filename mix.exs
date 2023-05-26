@@ -37,6 +37,8 @@ defmodule EdgeboxRpi200Test.MixProject do
       {:circuits_gpio, "~> 1.0"},
       {:circuits_uart, "~> 1.3"},
       {:circuits_i2c, "~> 1.0"},
+      {:nerves_time_rtc_nxp,
+       git: "git@github.com:pojiro/nerves_time_rtc_nxp.git", branch: "pojiro/add-pcf8563-impl"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.13.0", targets: @all_targets},
