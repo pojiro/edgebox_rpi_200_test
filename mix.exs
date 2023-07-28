@@ -3,7 +3,7 @@ defmodule EdgeboxRpi200Test.MixProject do
 
   @app :edgebox_rpi_200_test
   @version "0.1.0"
-  @all_targets [:rpi4]
+  @all_targets [:edgebox_rpi_200]
 
   def project do
     [
@@ -22,7 +22,7 @@ defmodule EdgeboxRpi200Test.MixProject do
   def application do
     [
       mod: {EdgeboxRpi200Test.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :inets, :ssl]
     ]
   end
 
@@ -37,8 +37,8 @@ defmodule EdgeboxRpi200Test.MixProject do
       {:circuits_gpio, "~> 1.0"},
       {:circuits_uart, "~> 1.3"},
       {:circuits_i2c, "~> 1.0"},
-      {:nerves_time_rtc_nxp,
-       git: "git@github.com:pojiro/nerves_time_rtc_nxp.git", branch: "pojiro/add-pcf8563-impl"},
+      {:nerves_time_rtc_nxp, "~> 0.2.0"},
+      {:vintage_net_qmi, "~> 0.3.2"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.13.0", targets: @all_targets},
@@ -49,7 +49,17 @@ defmodule EdgeboxRpi200Test.MixProject do
       # bumps to Nerves systems. Since these include Linux kernel and Erlang
       # version updates, please review their release notes in case
       # changes to your application are needed.
-      {:nerves_system_rpi4, "~> 1.19", runtime: false, targets: :rpi4}
+      {
+        :edgebox_rpi_200,
+        git: "https://github.com/pojiro/custom_rpi4_for_edgebox_rpi_200.git",
+        tag: "v1.23.0+edgebox",
+        runtime: false,
+        targets: :edgebox_rpi_200
+        # path: "../custom_rpi4_for_edgebox_rpi_200",
+        # runtime: false,
+        # targets: :edgebox_rpi_200,
+        # nerves: [compile: true]
+      }
     ]
   end
 
